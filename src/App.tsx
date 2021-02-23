@@ -1,17 +1,10 @@
-import {Button} from "./components/Button";
+import "./styles/global.css";
+import {ExperienceBar} from "./components/ExperienceBar";
 
 function App() {
   return (
-    <div>
-      <Button color={"blue"}>
-        Botão1
-      </Button>
-      <Button color="red">
-        Botão2
-      </Button>
-      <Button color="green">
-        Botão3
-      </Button>
+    <div className={"container"}>
+      <ExperienceBar></ExperienceBar>
     </div>
   );
 }
