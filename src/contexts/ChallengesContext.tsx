@@ -15,6 +15,7 @@ interface ChallengesContextData {
   startNewChallenge: () => void,
   activeChallenge: Challenge
   resetChallenge: () => void,
+  experienceToNextLevel: number
 }
 
 interface ChallengesProviderProps {
@@ -25,9 +26,12 @@ export const ChallengesContext = createContext({} as ChallengesContextData);
 
 export function ChallengesProvider({children}: ChallengesProviderProps) {
   const [level, setLevel] = useState(1);
-  const [currentExperience, setCurrentExperience] = useState(0);
+  const [currentExperience, setCurrentExperience] = useState(30);
   const [challengesCompleted, setChallengesCompleted] = useState(0);
   const [activeChallenge, setActiveChallenge] = useState(null);
+
+  const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
+
 
   /** function passada como param pro provider context, é acessada por toda a aplicacao*/
   function levelUp() {
@@ -53,7 +57,8 @@ export function ChallengesProvider({children}: ChallengesProviderProps) {
         challengesCompleted,
         startNewChallenge,
         activeChallenge,
-        resetChallenge
+        resetChallenge,
+        experienceToNextLevel
       }}>
       {children}
     </ChallengesContext.Provider>
