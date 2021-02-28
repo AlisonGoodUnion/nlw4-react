@@ -39,6 +39,7 @@ export function CountDownProvider({children}: CountDownProviderProps) {
     clearTimeout(countdownTimeout);
     setIsActive(false);
     setTime(0.1 * 60);
+    setHasFinished(false);
   }
 
   function incrementTimeClock() {

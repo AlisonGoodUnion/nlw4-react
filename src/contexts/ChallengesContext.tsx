@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useState} from 'react'
+import {createContext, ReactNode, useEffect, useState} from 'react'
 import challenges from '../../challenges.json'
 
 interface Challenge {
@@ -33,6 +33,11 @@ export function ChallengesProvider({children}: ChallengesProviderProps) {
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
+  /** side effect quando userEffect recebe array void só é executado 1x em tela*/
+  useEffect( () => {
+    Notification.requestPermission().then();
+  } ,[]);
+
 
   /** function passada como param pro provider context, é acessada por toda a aplicacao*/
   function levelUp() {
@@ -41,8 +46,17 @@ export function ChallengesProvider({children}: ChallengesProviderProps) {
 
   function startNewChallenge() {
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
-    const challenge = challenges[randomChallengeIndex]
-    setActiveChallenge(challenge)
+    const challenge = challenges[randomChallengeIndex];
+    setActiveChallenge(challenge);
+
+    new Audio('/notification.mp3').play().then();
+
+    if (Notification.permission == 'granted') {
+      /** https://developer.mozilla.org/pt-BR/docs/Web/API/Notification*/
+      new Notification('Novo desafio 🎉', {
+        body: `Valendo ${challenge.amount}xp!`
+      })
+    }
   }
 
   function resetChallenge() {
