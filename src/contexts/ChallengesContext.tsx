@@ -1,5 +1,6 @@
-import {createContext, ReactNode, useEffect, useState} from 'react'
-import challenges from '../../challenges.json'
+import {createContext, ReactNode, useEffect, useState} from 'react';
+import challenges from '../../challenges.json';
+import Cookies from 'js-cookie';
 
 interface Challenge {
   type: 'body' | 'eye';
@@ -34,10 +35,15 @@ export function ChallengesProvider({children}: ChallengesProviderProps) {
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
   /** side effect quando userEffect recebe array void só é executado 1x em tela*/
-  useEffect( () => {
+  useEffect(() => {
     Notification.requestPermission().then();
-  } ,[]);
+  }, []);
 
+  useEffect(() => {
+      Cookies.set('level', String(level));
+      Cookies.set('currentExperience', String(currentExperience));
+      Cookies.set('challengesCompleted', String(challengesCompleted));
+    },[level, currentExperience, challengesCompleted]);
 
   /** function passada como param pro provider context, é acessada por toda a aplicacao*/
   function levelUp() {
@@ -64,21 +70,21 @@ export function ChallengesProvider({children}: ChallengesProviderProps) {
   }
 
   function completeChallenge() {
-    if (!activeChallenge){
+    if (!activeChallenge) {
       return;
     }
 
-    const { amount } = activeChallenge;
+    const {amount} = activeChallenge;
     let finalExperience = currentExperience + amount;//let it change
 
-    if(finalExperience >= experienceToNextLevel) {
+    if (finalExperience >= experienceToNextLevel) {
       finalExperience = finalExperience - experienceToNextLevel;
       levelUp();
     }
 
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
-    setChallengesCompleted(challengesCompleted +1);
+    setChallengesCompleted(challengesCompleted + 1);
   }
 
   return (
