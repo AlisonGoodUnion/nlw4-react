@@ -1,5 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# URL ACESSO
+### https://nlw4-moveit-goodunion.vercel.app/index
+
+
+NEXT JS,REACT, VERCEL, Cookies.
+Para execucao local necessario instalar npm, yarn, etc. 
+
+//TODO Proximo passo login + top 10 list.
+
 ## Coockies
+
 ```yarn add js-cookie```<br>
 ```yarn add @types/js-cookie -D```<br>
 ## Deploys Vercel
@@ -20,6 +29,7 @@ npm run dev
 yarn dev
 ```
 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
