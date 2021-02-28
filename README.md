@@ -1,9 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-## 
-
-```yarn add js-cookie```
-```yarn add @types/js-cookie -D```
-
+## Coockies
+```yarn add js-cookie```<br>
+```yarn add @types/js-cookie -D```<br>
+## Deploys Vercel
+```npm install i -g vercel```<br>
+```vercel -h```<br>
+```vercel login```<br>
 ## Getting Started
 
 * NextJS atua como um intermediario entre a api e o reat.
